@@ -1,5 +1,5 @@
-FROM openjdk:8-jdk-alpine
-EXPOSE 8082
+#FROM openjdk:8-jdk-alpine
+#EXPOSE 8082
 #ADD target/timesheet-devops-1.0.jar timesheet-devops-1.0.jar
 
 #ENTRYPOINT ["java","-jar","/timesheet-devops-1.0.jar"]
@@ -13,7 +13,7 @@ EXPOSE 8082
 
 # Stage 2: Create the runtime container
 FROM openjdk:11-jre-slim
-EXPOSE 8088
+EXPOSE 8089
 # Install curl in the container
 
 RUN apt-get update && apt-get install -y curl
