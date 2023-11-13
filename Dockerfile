@@ -4,12 +4,12 @@ EXPOSE 8082
 
 #ENTRYPOINT ["java","-jar","/timesheet-devops-1.0.jar"]
 # Stage 1: Build the application
-FROM maven:3.8.3-openjdk-11 AS builder
-WORKDIR /app
-COPY pom.xml .
-RUN --mount=type=cache,target=/root/.m2 mvn dependency:go-offline
-COPY src/ src/
-RUN --mount=type=cache,target=/root/.m2 mvn package
+#FROM maven:3.8.3-openjdk-11 AS builder
+#WORKDIR /app
+#COPY pom.xml .
+#RUN --mount=type=cache,target=/root/.m2 mvn dependency:go-offline
+#COPY src/ src/
+#RUN --mount=type=cache,target=/root/.m2 mvn package
 
 # Stage 2: Create the runtime container
 FROM openjdk:11-jre-slim
