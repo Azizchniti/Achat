@@ -25,6 +25,6 @@ ARG ARTIFACT_PATH="tn/esprit/rh/achat/1.0/achat-1.0.jar"
 
 RUN curl -o /achat-1.0.jar ${NEXUS_URL}${ARTIFACT_PATH}
 
-COPY --from=builder /app/target/achat-1.0.jar /achat-1.0.jar
+#COPY --from=builder /app/target/achat-1.0.jar /achat-1.0.jar
 ENV JAVA_OPTS="-Dlogging.level.org.springframework.security=DEBUG -Djdk.tls.client.protocols=TLSv1.2"
 ENTRYPOINT ["java","-jar","/achat-1.0.jar"]
