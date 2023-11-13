@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: devops-db
+    ports:
+      - "3333:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=mydatabase
+    volumes:
+      - ./data.sql:/docker-entrypoint-initdb.d/data.sql
+    networks:
+      - my-network
+    restart: always
+
+  spring-boot-app:
+    image: ghadamaaloul/achat:1-0
+    container_name: achat
+
+    ports:
+      - "8089:8089"
+    depends_on:
+      - mysql-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    networks:
+      - my-network
+    restart: always
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
+    restart: always
+  
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+    restart: always
+      
+networks:
+  my-network:
