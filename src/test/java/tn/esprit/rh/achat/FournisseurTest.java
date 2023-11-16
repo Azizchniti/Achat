@@ -4,10 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +49,7 @@ public class FournisseurTest {
     private Fournisseur fournisseur;
 
     @Before
-     void setUp() {
+    void setUp() {
         fournisseur = new Fournisseur();
         fournisseur.setIdFournisseur(1L);
         fournisseur.setCode("F123");
@@ -68,6 +65,11 @@ public class FournisseurTest {
         SecteurActivite secteurActivite1 = new SecteurActivite();
         secteurActivite1.setIdSecteurActivite(1L);
         secteurActivites.add(secteurActivite1);
+
+        // Set the secteurActivites list to the fournisseur object
+
+        Set<SecteurActivite> secteurActiviteSet = new HashSet<>();
+        fournisseur.setSecteurActivites(secteurActiviteSet);
     }
 
     @Test
