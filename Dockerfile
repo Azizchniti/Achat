@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y curl
 
 # Download the .jar file from Nexus and copy it to the container
 
-ARG NEXUS_URL="http://192.168.1.61:8081/repository/maven-releases/"
+ARG NEXUS_URL="http://192.168.1.60:8081/repository/maven-releases/"
 ARG ARTIFACT_PATH="tn/esprit/rh/achat/1.0/achat-1.0.jar"
 
 RUN curl -o /achat-1.0.jar ${NEXUS_URL}${ARTIFACT_PATH}
