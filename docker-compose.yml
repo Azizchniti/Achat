@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: achatdb
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+
+  spring:
+    image: nourbencheikhlarbi/backend:latest
+    restart: unless-stopped
+    ports:
+      - "8088:8090"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+          "spring.datasource.url": "jdbc:mysql://localhost:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+          "spring.datasource.username": "root",
+          "spring.datasource.password": "root",
+          "spring.jpa.hibernate.ddl-auto": "update"
+        }'
+    depends_on:
+      - db
