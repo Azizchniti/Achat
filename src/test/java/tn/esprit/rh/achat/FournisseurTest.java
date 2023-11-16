@@ -28,7 +28,6 @@ import tn.esprit.rh.achat.services.FournisseurServiceImpl;
 
 @ContextConfiguration(classes = {FournisseurServiceImpl.class})
 @ExtendWith(value = SpringExtension.class)
-@RunWith(MockitoJUnitRunner.class)
 public class FournisseurTest {
 
     @Mock
