@@ -52,7 +52,7 @@ public class FournisseurTest {
     private Fournisseur fournisseur;
 
     @Before
-    public void setUp() {
+     void setUp() {
         fournisseur = new Fournisseur();
         fournisseur.setIdFournisseur(1L);
         fournisseur.setCode("F123");
@@ -71,7 +71,7 @@ public class FournisseurTest {
     }
 
     @Test
-    public void testRetrieveAllFournisseurs() {
+    void testRetrieveAllFournisseurs() {
         when(fournisseurRepository.findAll()).thenReturn(List.of(fournisseur));
 
         List<Fournisseur> result = fournisseurService.retrieveAllFournisseurs();
@@ -83,7 +83,7 @@ public class FournisseurTest {
     }
 
     @Test
-    public void testAddFournisseur() {
+     void testAddFournisseur() {
         when(fournisseurRepository.save(any(Fournisseur.class))).thenReturn(fournisseur);
 
         Fournisseur result = fournisseurService.addFournisseur(fournisseur);
@@ -94,7 +94,7 @@ public class FournisseurTest {
     }
 
     @Test
-    public void testUpdateFournisseur() {
+     void testUpdateFournisseur() {
         when(fournisseurRepository.save(any(Fournisseur.class))).thenReturn(fournisseur);
 
         Fournisseur result = fournisseurService.updateFournisseur(fournisseur);
@@ -105,14 +105,14 @@ public class FournisseurTest {
     }
 
     @Test
-    public void testDeleteFournisseur() {
+     void testDeleteFournisseur() {
         fournisseurService.deleteFournisseur(1L);
 
         verify(fournisseurRepository, times(1)).deleteById(1L);
     }
 
     @Test
-    public void testRetrieveFournisseur() {
+     void testRetrieveFournisseur() {
         when(fournisseurRepository.findById(1L)).thenReturn(Optional.of(fournisseur));
 
         Fournisseur result = fournisseurService.retrieveFournisseur(1L);
