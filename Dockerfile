@@ -15,4 +15,4 @@ RUN mvn clean install
 EXPOSE 8080
 
 # Run the application when the container launches
-CMD ["java", "-jar", "target/your-spring-app.jar"]
+CMD ["java", "-jar", "target/achat-1.0.jar"]
